@@ -2,14 +2,19 @@ var express = require('express');
 var app = express();
 
 
+
+/* serve all files in public folder */
 app.use(express.static('public'));
 
 
-/*app.get('/locations', function(request, response){
-  var cities = ['Caspiana', 'Indigo', 'Paradise'];
-  response.send(cities);
-});*/
+/* get request for cities */
+app.get('/cities', function(request, response){
+  var cities = ['Melbourne', 'Sydney', 'Brisbane','Adelaide','Perth','Darwin','Hobart'];
+  response.json(cities);
+});
 
+
+/* local host */
 app.listen(3001, function() {
     console.log("Running Express");
 });
