@@ -59,6 +59,16 @@ var createCity = function(name){
 };
 
 
+// params
+app.param('name', function( request, response, next){
+  request.cityName = (request.params.name);
+});
+
+// delete
+app.delete('/cities:name', function ( request, response){
+  delete cities[request.cityName];
+});
+
 
 // local host
 app.listen(3001, function() {
