@@ -1,15 +1,5 @@
 $(function(){
   $.get('/cities', appendToList);
-
-  function appendToList(cities) {
-    var list = [];
-    for(var i in cities){
-      city = cities[i];
-      content = '<a href="/cities/'+city+'"</a>';
-      list.push($('<li>', { text: cities[i] }));
-    }
-    $('.cities-list').append(list);
-  }
 });
 
 
@@ -28,3 +18,15 @@ $(function(){
   });
 
 });
+
+
+
+    function appendToList(cities) {
+      var list = [];
+      for(var i in cities){
+        city = cities[i];
+        content = '<a href="/cities/'+city+'"</a>';
+        list.push($('<li>', { text: cities[i] }));
+      }
+      $('.cities-list').append(list);
+    }
