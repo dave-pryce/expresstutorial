@@ -30,6 +30,7 @@ var cities = {
 };
 
 
+
 // get request for cities
 app.get('/cities', function(request, response){
     response.json(cities);

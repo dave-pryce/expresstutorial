@@ -2,7 +2,6 @@ $(function(){
   $.get('/cities', appendToList);
 
 
-
   $('form').on('submit', function(event){
     event.preventDefault();
 
@@ -22,12 +21,12 @@ $(function(){
     function appendToList(cities) {
       var list = [];
       var content, city;
+      console.log(cities);
       for(var i in cities){
         city = cities[i];
         content = '<a href="/cities/'+city+'">'+city+'</a>'+ // + // example on how to serve static images
              ' <a href="#" data-city="'+city+'">'+
              '<img src="delete.png"></a>';
-
         list.push($('<li>', { html: content }));
       }
 
