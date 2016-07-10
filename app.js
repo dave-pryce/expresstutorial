@@ -11,15 +11,6 @@ var parseUrlencoded = bodyParser.urlencoded({ extended: false });
 //serve all files in public folder
 app.use(express.static('public'));
 
-// cities array
-//var cities = ['Melbourne',
-//'Sydney',
-//'Brisbane',
-//'Adelaide',
-//'Perth',
-//'Darwin',
-//'Hobart',
-//'Canberra'];
 
 // cities object
 var cities = {
@@ -30,23 +21,25 @@ var cities = {
 };
 
 
-
 // get request for cities
 app.get('/cities', function(request, response){
-    response.json(cities);
+    response.json(Object.keys(cities));
 });
 
-
-// read in user params
-app.param('name', function( request, response, next){
-  request.cityName = (request.params.name);
-});
 
 // get city by name
 app.get('/cities/:name', function(request, response){
   var description = cities[request.params.name];
   response.json(description);
 });
+
+
+// read in user params
+app.param('name', function( request, response, next){
+  request.cityName = (request.params.name);
+  next();
+});
+
 
 
 // create function to filter by city name

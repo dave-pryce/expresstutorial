@@ -10,8 +10,8 @@ $(function(){
 
     $.ajax({
       type: 'POST', url: '/cities', data: cityData
-    }).done(function(cities){
-      appendToList([cities]);
+    }).done(function(cityName){
+      appendToList([cityName]);
       form.trigger('reset');
     });
   });
