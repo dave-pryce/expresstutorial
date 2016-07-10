@@ -34,7 +34,7 @@ $(function(){
     }
 
 
-$('cities-list').on('click', 'a[data-city]', function(event) {
+$('.cities-list').on('click', 'a[data-city]', function(event) {
   if(!confirm('Are you sure ?')) {
     return false;
   }
@@ -43,7 +43,7 @@ $('cities-list').on('click', 'a[data-city]', function(event) {
 
   $.ajax({
     type: 'DELETE',
-    url: '/cities/' + target.data('city')
+    url: '/cities/' + target.data('data-city')
   }).done(function(){
     target.parents('li').remove();
   });
