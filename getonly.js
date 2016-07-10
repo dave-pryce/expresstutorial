@@ -1,4 +1,4 @@
-/* Create middle ware to only accept get requests */
+/* Create middleware to only accept get requests */
 module.exports = function(request, response, next){
   if (request.method === 'GET') {
     next();
