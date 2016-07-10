@@ -21,24 +21,48 @@ var cities = {
 };
 
 
+// remove route duplications
+app.route('/cities')
+
 // get request for cities
-app.get('/cities', function(request, response){
+.get(function(request, response){
     response.json(Object.keys(cities));
+})
+
+// post request for cities
+.post(parseUrlencoded, function ( request, response){
+  var newCity = request.body;
+  cities[newCity.name] = newCity.description;
+  response.status(201).json(newCity.name);
 });
 
 
-// get city by name
-app.get('/cities/:name', function(request, response){
-  var description = cities[request.params.name];
-  response.json(description);
-});
-
-
-// read in user params
+// read in user param name
 app.param('name', function( request, response, next){
   request.cityName = (request.params.name);
   next();
 });
+
+
+app.route('/cities/:name')
+// get city by name
+.get(function(request, response){
+  var description = cities[request.params.name];
+  response.json(description);
+})
+// delete
+.delete(function ( request, response){
+  delete cities[request.cityName];
+  response.sendStatus(200);
+});
+
+
+
+// local host
+app.listen(3001, function() {
+    console.log("Running Express on port 3001");
+});
+
 
 
 
@@ -52,26 +76,3 @@ app.param('name', function( request, response, next){
 
 //  return result;
 //}
-
-
-
-// post request for cities
-app.post('/cities', parseUrlencoded, function ( request, response){
-  var newCity = request.body;
-  cities[newCity.name] = newCity.description;
-  response.status(201).json(newCity.name);
-})
-
-
-
-// delete
-app.delete('/cities/:name', function ( request, response){
-  delete cities[request.cityName];
-  response.sendStatus(200);
-});
-
-
-// local host
-app.listen(3001, function() {
-    console.log("Running Express on port 3001");
-});
