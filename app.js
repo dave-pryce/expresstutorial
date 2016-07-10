@@ -57,16 +57,10 @@ app.param('name', function( request, response, next){
 
 // post request for cities
 app.post('/cities', parseUrlencoded, function ( request, response){
-  var city = createCity(request.body.name);
-  response.status(201).json(city);
+  var newCity = request.body;
+  cities[newCity.name] = newCity.description;
+  response.status(201).json(newCity.name);
 })
-
-
-// function to create city
-var createCity = function(name){
-  return name;
-};
-
 
 
 
