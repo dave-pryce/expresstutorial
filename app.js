@@ -1,6 +1,10 @@
 var express = require('express');
 var app = express();
 //serve all files in public folder
+
+
+app.set('port',(process.env.PORT || 3001));
+
 app.use(express.static('public'));
 
 
@@ -8,8 +12,8 @@ var cities = require('./routes/cities');
 app.use('/cities', cities);
 
 // local host
-app.listen(3001, function() {
-    console.log("Running Express on port 3001");
+app.listen(app.get('port'), function() {
+    console.log("Running Express on port", app.get('port'));
 });
 
 // use getonly middleware
