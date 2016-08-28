@@ -12,3 +12,8 @@ img {
 ul {
   list-style-type: none;
 }
+
+
+.hero {
+  background: linear-gradient(#EEEEEE, #FFFFFF);
+}
